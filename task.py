@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 
 
 def find(phrase, text):
-    return text.count(phrase)
+    pattern = r"(\s|^)" + phrase + r"(\s|$)"
+    return len(re.findall(pattern, text))
 
 
 def main():
@@ -36,10 +37,10 @@ def main():
         print(filename)
 
     for i in range(len(phrases)):
-        count[i] *= len(phrases[i]) * 100000 / (texts_length)
+        count[i] *= len(phrases[i]) * 100000 / texts_length
 
     for i in range(len(phrases)):
-        don[i] *= len(phrases[i]) * 100000 / (texts_length)
+        don[i] *= len(phrases[i]) * 100000 / texts_length
 
     delta = [abs(don[i] - count[i]) for i in range(len(phrases))]
 
